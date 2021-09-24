@@ -53,7 +53,7 @@ export const Container = styled(animated.div)<ContainerProps>`
     opacity: 0.6;
     border: 0;
     background: transparent;
-    color: inherit;
+    color: #B0C4DE;
   }
   ${props =>
     !props.hasDescription &&

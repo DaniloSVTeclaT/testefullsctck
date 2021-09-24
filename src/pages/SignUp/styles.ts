@@ -45,7 +45,7 @@ export const AnimationContainer = styled.div`
     }
   }
     a {
-      color: #f4ede8;
+      color: #228B22;
       display: block;
       margin-top: 24px;
       text-decoration: none;
@@ -56,7 +56,7 @@ export const AnimationContainer = styled.div`
     }
   }
   > a {
-    color: #ff9000;
+    color: #228B22;
     display: block;
     margin-top: 24px;
     text-decoration: none;

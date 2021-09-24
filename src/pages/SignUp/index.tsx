@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { FiArrowLeft, FiUser, FiMail, FiLock } from 'react-icons/fi';
+import { FiArrowLeft, FiUser, FiMail, FiLock , FiActivity} from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -93,6 +93,13 @@ const SignUp: React.FC = () => {
               icon={FiLock}
               type="password"
               placeholder="Senha"
+            />
+
+            <Input
+              name="tasks"
+              icon={FiActivity}
+             
+              placeholder="Tarefa"
             />
 
             <Button type="submit">Cadastrar</Button>

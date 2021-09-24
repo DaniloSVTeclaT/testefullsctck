@@ -70,7 +70,7 @@ const SignIn: React.FC = () => {
     },
     [signIn, addToast, history],
   );
-
+    
   return (
     <Container>
       <Content>
@@ -85,10 +85,13 @@ const SignIn: React.FC = () => {
             <Input
               name="password"
               icon={FiLock}
-              type="password"
-              placeholder="Senha"
-            />
 
+              type="password"
+
+              placeholder="Senha"
+              
+            />
+                                                                                                                                  
             <Button type="submit">Entrar</Button>
 
             <a href="forgot">Esqueci minha senha</a>
