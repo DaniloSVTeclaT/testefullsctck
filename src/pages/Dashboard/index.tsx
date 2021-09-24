@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect,useRef} from 'react';
 import axios from 'axios';
 import { FiLogIn, FiMail, FiLock, FiEdit, FiPower, FiTrash, FiTrash2 } from 'react-icons/fi';
 import { parseISO } from 'date-fns'; 
@@ -30,6 +30,7 @@ interface Tasks {
 }
 
 const Dashboard: React.FC = () =>  {
+    const inputRef = useRef<HTMLInputElement>(null);
     const goToken = localStorage.getItem('@GoBarber:token');
     const [nameTasks,setNameTasks] = useState('')
     const [DescriptionTask,setDescriptionTasks] = useState('')
@@ -69,7 +70,9 @@ const Dashboard: React.FC = () =>  {
             status:statusTasks,
            
         });
-        api.get(`tasks/users/${user.id}`,{
+    
+
+        await  api.get(`tasks/users/${user.id}`,{
             headers:{
               Authorization: `Bearer ${goToken}`
             }
@@ -87,7 +90,7 @@ const Dashboard: React.FC = () =>  {
 
     async function removeTasks(id:string) {
         
-        api.delete( `tasks/${id}`,{
+        await api.delete( `tasks/${id}`,{
             
             headers:{
               Authorization: `Bearer ${goToken}`
@@ -96,7 +99,7 @@ const Dashboard: React.FC = () =>  {
            })
         
           
-        api.get(`tasks/users/${user.id}`,{
+           await api.get(`tasks/users/${user.id}`,{
             headers:{
               Authorization: `Bearer ${goToken}`
             }
@@ -120,7 +123,7 @@ const Dashboard: React.FC = () =>  {
     async function updateTasks(){
         
         api.defaults.headers.Authorization = `Bearer ${goToken}`;
-        api.patch(`tasks/${idTasks}`, {
+        await api.patch(`tasks/${idTasks}`, {
             id:idTasks,
             name:nameTasks,
             description:DescriptionTask,
@@ -128,7 +131,7 @@ const Dashboard: React.FC = () =>  {
             status:statusTasks,
            
         });
-        api.get(`tasks/users/${user.id}`,{
+        await api.get(`tasks/users/${user.id}`,{
             headers:{
               Authorization: `Bearer ${goToken}`
             }
@@ -177,7 +180,8 @@ return (
                     <form name='Editar' onSubmit={updateTasks}>  
                     <h1>Editar Tarefas</h1>
                     
-                    <input value={nameTasks}
+                    <input  value={nameTasks}
+
                         onChange={e => setNameTasks(e.target.value)} 
                         type="text" 
                         placeholder="Nome tarefa"
@@ -211,6 +215,7 @@ return (
                 <h1>Cadastrar Tarefas</h1>
                 
                 <input 
+                    ref={inputRef}
                     onChange={e => setNameTasks(e.target.value)} 
                     type="text" 
                     placeholder="Nome tarefa"
@@ -226,8 +231,6 @@ return (
 
                 <select onChange={e => 
                     setStatusTasks(e.target.value)} 
-                    
-                    
                     id="selection_text" 
                     name="atividades"
                 >
